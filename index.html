@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loved Pets Adoption Center</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="branding">
+        <div class="logo">🐾</div>
+        <div>
+          <h1>Loved Pets Animal Center</h1>
+          <p>6645 Watergrass Cir., Springfield, Arizona 11645 · (555) 476-2984</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#adopt">Adopt</a>
+        <a href="#volunteer">Volunteer</a>
+        <a href="#donate">Donate</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home">
+      <div class="hero-text">
+        <h2>Every animal deserves a loving forever home.</h2>
+        <p>At Loved Pets Animal Rescue, we provide vet care, grooming, and adoption screening to match each animal with the right family.</p>
+        <div class="btn-group">
+          <a href="#adopt" class="btn primary">View Pets for Adoption</a>
+          <a href="#volunteer" class="btn secondary">Become a Volunteer</a>
+        </div>
+        <div class="hours">
+          <h3>Hours</h3>
+          <ul>
+            <li>Mon–Tue–Thu: 8am–5pm</li>
+            <li>Wed: 8am–8pm</li>
+            <li>Fri–Sat: 8am–12pm</li>
+            <li>Sun: Closed</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero-img">🐕 🐈</div>
+    </section>
+
+    <section id="adopt" class="adopt-section">
+      <h3>Pets Available for Adoption</h3>
+      <p>All animals are screened, groomed, and ready to meet adoptive families.</p>
+      <div class="animal-grid" id="animalGrid"></div>
+    </section>
+
+    <section id="volunteer" class="volunteer-section">
+      <h3>Volunteer With Us</h3>
+      <p>Help bathe, groom, socialize pets, clean kennels, or assist with office tasks.</p>
+      <div class="volunteer-grid">
+        <div>
+          <h4>How to Become a Volunteer</h4>
+          <ol>
+            <li>Complete the online application</li>
+            <li>Email it to volunteer@welovepets.com</li>
+            <li>Phone interview</li>
+            <li>Attend training (1st Saturday monthly)</li>
+          </ol>
+        </div>
+
+        <form class="volunteer-form" onsubmit="handleSubmit(event)">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name" required />
+          <label>Email</label>
+          <input type="email" placeholder="you@email.com" required />
+          <label>Why do you want to volunteer?</label>
+          <textarea rows="4" placeholder="I love animals because..." required></textarea>
+          <div class="btn-group">
+            <button type="submit" class="btn primary">Submit</button>
+            <button type="button" class="btn secondary" onclick="saveDraft()">Save Draft</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <h3>About Loved Pets</h3>
+      <p>We believe all animals deserve a chance to find a loving home. We provide vet care, grooming, and adoption screening.</p>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <h3>Contact</h3>
+      <p>6645 Watergrass Cir., Springfield, Arizona 11645 · Phone: (555) 476-2984</p>
+      <p>Email: josie@welovepets.com</p>
+      <div>
+        <a class="btn secondary" href="Completed_Project_Plan_Worksheet.docx" download>Download Project Plan</a>
+      </div>
+    </section>
+
+    <section id="donate" class="donate-section">
+      <h3>Support Loved Pets</h3>
+      <p>Your donation helps cover vet care, food, and shelter supplies.</p>
+      <a href="#" class="btn primary">Donate Now</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Loved Pets Animal Shelter</p>
+  </footer>
+
+  <script>
+    // Sample pet data
+    const pets = [
+      { name: 'Max', type: 'Dog', age: '3 years', breed: 'Golden Retriever', status: 'Available' },
+      { name: 'Luna', type: 'Cat', age: '2 years', breed: 'Siamese', status: 'Available' },
+      { name: 'Charlie', type: 'Dog', age: '5 years', breed: 'Beagle', status: 'Available' },
+      { name: 'Bella', type: 'Cat', age: '1 year', breed: 'Persian', status: 'Available' },
+      { name: 'Rocky', type: 'Dog', age: '4 years', breed: 'Labrador', status: 'Available' },
+      { name: 'Whiskers', type: 'Cat', age: '3 years', breed: 'Tabby', status: 'Available' }
+    ];
+
+    // Render pet cards
+    const grid = document.getElementById('animalGrid');
+    pets.forEach(pet => {
+      const card = document.createElement('div');
+      card.className = 'animal-card';
+      card.innerHTML = `
+        <div style="width:100%;height:200px;background:linear-gradient(135deg,#10b981,#34d399);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:15px;">
+          ${pet.type === 'Dog' ? '🐕' : '🐈'}
+        </div>
+        <h4>${pet.name}</h4>
+        <p><strong>${pet.breed}</strong></p>
+        <p>Age: ${pet.age}</p>
+        <span class="animal-badge">${pet.status}</span>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Form handlers
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your interest! We will contact you soon.');
+      e.target.reset();
+    }
+
+    function saveDraft() {
+      alert('Draft saved locally!');
+    }
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
